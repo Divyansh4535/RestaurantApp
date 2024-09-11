@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode:"class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,5 +15,18 @@ module.exports = {
       },
     },
   },
-  plugins: [],
-};
+plugins: [
+     function ({ addUtilities }) {
+         const newUtilities = {
+             ".no-scrollbar::-webkit-scrollbar": {
+                 display: "none",
+             },
+             ".no-scrollbar": {
+                 "-ms-overflow-style": "none",
+                 "scrollbar-width": "none",
+             },
+         };
+         addUtilities(newUtilities);
+     },
+ ],
+}
