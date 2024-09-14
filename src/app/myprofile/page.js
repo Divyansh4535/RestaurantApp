@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CustomerHeader from '../component/CustomerHeader'
 import RestaurantFooter from '../component/RestaurantFooter'
 
-const page = () => {
+const Page = () => {
   const [myOrder, setMyOrder] = useState([])
   console.log('myOrder', myOrder)
   console.log('myOrder', myOrder)
@@ -48,4 +48,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

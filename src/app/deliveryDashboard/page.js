@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import Loading from "../Components/Input/Loading";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   const [myOrder, setMyOrder] = useState([]);
@@ -72,4 +72,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

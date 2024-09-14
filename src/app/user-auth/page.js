@@ -4,7 +4,7 @@ import CustomerHeader from "../component/CustomerHeader";
 import UserSignUp from "../component/User-SignUp";
 import UserLogin from "../component/UserLogin";
 
-const page = (props) => {
+const Page = (props) => {
   const [login, setLogin] = useState(true);
   console.log('order : -', props)
   
@@ -16,4 +16,4 @@ const page = (props) => {
   );
 };
 
-export default page;
+export default Page;

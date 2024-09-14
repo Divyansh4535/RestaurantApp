@@ -7,7 +7,7 @@ import Link from "next/link";
 import RestaurantHeader from "../component/RestaurantHeader";
 import RestaurantFooter from "../component/RestaurantFooter";
 
-const page = () => {
+const Page = () => {
   const [login, setLogin] = useState(true);
 
   return (
@@ -36,4 +36,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

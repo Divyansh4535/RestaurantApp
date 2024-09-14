@@ -16,7 +16,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const page = () => {
+const Page = () => {
   const [cartStorage, setCartStorage] = useState([]);
   const [total, setTotal] = useState(0);
   const TaxFood = (total * TAX) / 100;
@@ -205,4 +205,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

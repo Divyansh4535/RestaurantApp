@@ -5,7 +5,7 @@ import RestaurantFooter from '@/app/component/RestaurantFooter'
 import RestaurantHeader from '@/app/component/RestaurantHeader'
 import AddFoodItemList from '@/app/component/AddFoodItemList'
 
-const page = () => {
+const Page = () => {
 const [addItem, setAddItem] = useState(false)
 
     return (
@@ -20,7 +20,7 @@ const [addItem, setAddItem] = useState(false)
         </>
     )
 }
-export default page
+export default Page
 
 
 

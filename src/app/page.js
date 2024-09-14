@@ -8,7 +8,7 @@ import Loading from "./Components/Input/Loading";
 import { Button } from "@/components/ui/button";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 
-const page = () => {
+const Page = () => {
   const [location, setLocation] = useState([]);
   const [restaurant, setRestaurant] = useState([]);
   const [selectLocation, setSelectLocation] = useState("");
@@ -140,4 +140,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

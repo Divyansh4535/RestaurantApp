@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-const page = (props) => {
+const Page = (props) => {
   let name = props.params.name;
   const [restaurantDetails, setRestaurantDetails] = useState();
   const [foodItem, setFoodItem] = useState([]);
@@ -133,4 +133,4 @@ const page = (props) => {
   );
 };
 
-export default page;
+export default Page;
