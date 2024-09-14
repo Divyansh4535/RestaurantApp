@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import CustomerHeader from "../_components/CustomerHeader";
+import CustomerHeader from "../component/CustomerHeader";
 import { DELIVERY_CHARGES, TAX } from "../lib/constent";
 import { useRouter } from "next/navigation";
 

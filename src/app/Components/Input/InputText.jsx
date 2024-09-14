@@ -1,10 +1,10 @@
 import React from 'react'
 
-const InputText = ({ Placeholder, Name, ClassName, value, onChange, Type }) => {
+const InputText = ({ Placeholder, Name, ClassName,CL, value, onChange, Type }) => {
   return (
     <div ClassName="grid  bg-red-500 max-w-lg  items-center gap-5 w-[5vw]  sm:w-96">
       <label
-        className={`text-lg text-gray-900 mb-4 font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${ClassName}`}
+        className={`text-lg  mb-4 font-semibold leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${ClassName} ${CL}`}
       >{Name}</label>
       <input
         placeholder={Placeholder}

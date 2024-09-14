@@ -39,16 +39,15 @@ const Login = () => {
     setEmail("")
     setPassword("")
   }
-  console.log('email,password : ', email,password)
+  // console.log('email,password : ', email,password)
   return (
-    <div className="flex items-center flex-col gap-5 ">
-      <h2 className="text-lg font-semibold ">LogIn </h2>
-      <form className="flex items-center gap-6 flex-col" onSubmit={handleSubmit}>
-        <div className="relative">
+    <div className="flex items-center flex-col gap-5  w-full h-full ">
+      <form className="flex items-center gap-6 w-full h-full flex-col justify-center" onSubmit={handleSubmit}>
+        <div className="relative w-[50%]">
           <InputText Type="email" Name="Email" value={email} onChange={(e) => setEmail(e.target.value)} Placeholder="example@gmail.com" />
           {error && !email && <span className="absolute text-xs text-red-500 font-light">Please Enter a valid email </span>}
         </div>
-        <div className="relative mb-2">
+        <div className="relative mb-2 w-[50%]">
           <InputText Type="password" Name="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           {error && !password && <span className="absolute text-xs text-red-500 font-light">Please Enter a valid password </span>}
         </div>

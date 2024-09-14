@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import InputText from '../Components/Input/InputText'
 import Button from '../Components/Input/Button'
 import { useRouter } from 'next/navigation'
+// import { Button } from '@/components/ui/button'
 
 const UserLogin = ({ login, setLogin },props) => {
     const [email, setEmail] = useState("")
@@ -50,20 +51,20 @@ const UserLogin = ({ login, setLogin },props) => {
     }
 
     return (
-        <div className="flex bg-slate-200 flex-col h-[calc(100vh-5rem)]  w-full  items-center p-5 gap-5 ">
-            <h2 className="text-2xl font-bold " > User Log In  </h2>
-            <form onSubmit={handleSubmit} className="flex w-[50vw] bg-cyan-600   rounded-lg shadow-lg overflow-y-auto shadow-black no-scrollbar py-5 h-[70vh] items-center justify-center  gap-5 flex-col">
+        <div className="flex bg-slate-800 flex-col h-[calc(100vh-10vh)]  w-full  items-center p-5 gap-5 ">
+            <h2 className="text-2xl font-bold text-white " > User LogIn  </h2>
+            <form onSubmit={handleSubmit} className="flex w-[50vw] bg-slate-100   rounded-lg shadow-lg overflow-y-auto shadow-black no-scrollbar py-5 h-[70vh] items-center justify-center  gap-5 flex-col">
                 <div className="relative w-[50%]">
-                    <InputText Type="email" Name="Email" value={email} onChange={(e) => setEmail(e.target.value)} Placeholder="example@gmail.com" />
+                    <InputText Type="email" Name="Email" ClassName="text-black " value={email} onChange={(e) => setEmail(e.target.value)} Placeholder="example@gmail.com" />
                     {error && !email && <span className="absolute text-xs text-red-500 font-light">Please Enter a valid email </span>}
                 </div>
                 <div className="relative mb-2 w-[50%]">
-                    <InputText Type="password" Name="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <InputText ClassName="text-black" Type="password" Name="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     {error && !password && <span className="absolute text-xs text-red-500 font-light">Please Enter a valid password </span>}
                 </div>
-                <Button Name="LogIn" Type="submit"/>
+                <Button Name="LogIn" Type="submit" >Login </Button>
             </form>
-            <p className="cursor-pointer hover:text-blue-500 " onClick={() => setLogin(!login)}>Do not have a account ? SignUp</p>
+            <p className="cursor-pointer hover:text-blue-500 text-white " onClick={() => setLogin(!login)}>Do not have a account ? SignUp</p>
         </div>
     )
 }

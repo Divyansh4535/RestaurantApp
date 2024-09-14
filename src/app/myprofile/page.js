@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import CustomerHeader from '../_components/CustomerHeader'
-import RestaurantFooter from '../_components/RestaurantFooter'
+import CustomerHeader from '../component/CustomerHeader'
+import RestaurantFooter from '../component/RestaurantFooter'
 
 const page = () => {
   const [myOrder, setMyOrder] = useState([])

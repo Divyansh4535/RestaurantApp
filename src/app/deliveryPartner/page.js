@@ -2,9 +2,9 @@
 import React, { useState,useEffect } from "react";
 import Button from "../Components/Input/Button";
 import InputText from "../Components/Input/InputText";
-import CustomerHeader from "../_components/CustomerHeader";
+import CustomerHeader from "../component/CustomerHeader";
 import { useRouter } from "next/navigation";
-import DeliveryHeader from "../_components/DeliveryHeader";
+import DeliveryHeader from "../component/DeliveryHeader";
 
 const DeliveryPartner = () => {
   const router = useRouter();

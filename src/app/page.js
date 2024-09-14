@@ -1,8 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import CustomerHeader from "./_components/CustomerHeader";
+import CustomerHeader from "./component/CustomerHeader";
 import InputText from "./Components/Input/InputText";
 import { useRouter } from "next/navigation";
+import { BackgroundGradient } from "@/components/ui/background-gradient";
+import Loading from "./Components/Input/Loading";
+import { Button } from "@/components/ui/button";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
 
 const page = () => {
   const [location, setLocation] = useState([]);
@@ -49,16 +53,16 @@ const page = () => {
     <main>
       <CustomerHeader />
       <div
-        className="w-full gap-8  h-[300px] flex flex-col bg-red-100 items-center justify-center "
+        className="w-full gap-8  h-[300px] flex flex-col  items-center justify-center "
         style={{
-          backgroundImage: 'url("/public/Assets/banner.jpg")',
+          backgroundImage: "url(/Assets/banner.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <h1 className="text-5xl font-extrabold "> Food Delivery App </h1>
         <div className=" flex items-center justify-between gap-5 h-16 w-[80%] ">
-          <div className=" h-full w-[20%] flex items-center bg-red-800 flex-col relative ">
+          <div className=" h-full w-[20%] z-50 flex items-center  flex-col relative ">
             <input
               type="text"
               className="h-full w-full select-none px-5 text-xl  "
@@ -71,7 +75,7 @@ const page = () => {
                 location.map((item, idx) => (
                   <li
                     key={idx}
-                    className="bg-sky-200 w-full h-10 text-center cursor-pointer hover:bg-sky-300 font-medium text-lg    "
+                    className="bg-sky-800 w-full h-10 text-center cursor-pointer hover:bg-sky-900 font-medium text-white text-lg    "
                     onClick={() => handleOption(item)}
                   >
                     {item}
@@ -87,45 +91,51 @@ const page = () => {
           />
         </div>
       </div>
-      <div className="w-full flex gap-8 flex-wrap items-center  justify-evenly px-4 py-8 ">
-        {restaurant.map((item, idx) => (
-          <div
-            className="w-[300px] h-[300px] flex items-center gap-5  justify-center flex-col bg-blue-200 cursor-pointer hover:bg-blue-400  "
-            key={idx}
-            onClick={() =>
-              router.push("explore/" + item.name + "?id=" + item._id)
-            }
-          >
-            <h1 className="text-xl font-medium  capitalize ">{item.name}</h1>
-            <div className="flex flex-col items-start justify-center ">
-              <h2>
-                {" "}
-                <span className="text-base font-medium ">Contact</span> :{" "}
-                {item.contact}
-              </h2>
-              <h2>
-                {" "}
-                <span className="text-base font-medium capitalize ">
-                  City
-                </span>{" "}
-                : {item.city}
-              </h2>
-              <h2>
-                {" "}
-                <span className="text-base font-medium capitalize ">
-                  Address
-                </span>{" "}
-                : {item.address}
-              </h2>
-              <h2>
-                {" "}
-                <span className="text-base font-medium ">Email</span> :{" "}
-                {item.email}
-              </h2>
-            </div>
+      <div className="w-full h-full py-5 flex items-center ">
+        {restaurant.length > 0 ? (
+          <div className="w-full bg-slate-800 flex gap-8 flex-wrap items-center  justify-evenly px-4 py-8 ">
+            {restaurant.map((item, idx) => (
+                <BackgroundGradient key={idx}
+                  className="rounded-[22px] flex flex-col gap-3 items-center h-[300px] w-[300px] max-w-sm p-2 sm:p-8 bg-white dark:bg-zinc-900"
+                >
+                  <h1 className="text-xl font-bold capitalize ">{item.name}</h1>
+                  <div className="flex flex-col items-start gap-1 justify-center ">
+                    <h2>
+                      {" "}
+                      <span className="text-base font-semibold ">Contact</span> :{" "}
+                      {item.contact}
+                    </h2>
+                    <h2>
+                      {" "}
+                      <span className="text-base font-semibold capitalize ">
+                        City
+                      </span>{" "}
+                      : {item.city}
+                    </h2>
+                    <h2>
+                      {" "}
+                      <span className="text-base font-semibold capitalize ">
+                        Address
+                      </span>{" "}
+                      : {item.address}
+                    </h2>
+                    <h2>
+                      {" "}
+                      <span className="text-base font-semibold ">Email</span> :{" "}
+                      {item.email}
+                    </h2>
+                  </div>
+                  <Button onClick={() =>
+                    router.push("explore/" + item.name + "?id=" + item._id)
+                  } > Click me </Button>
+                </BackgroundGradient>
+            ))}
           </div>
-        ))}
+        ) : (
+          <Loading />
+        )}
       </div>
+      
     </main>
   );
 };

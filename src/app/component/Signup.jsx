@@ -1,10 +1,10 @@
 "use client"
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import InputText from '../Components/Input/InputText'
 import Button from '../Components/Input/Button'
-import { useRouter } from 'next/navigation'
 
-const UserSignUp = ({ login, setLogin }, props) => {
+const Signup = () => {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -66,60 +66,47 @@ const UserSignUp = ({ login, setLogin }, props) => {
     }
     return isValid;
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(' name, email, password, city, address, contact', name, email, password, city, address, contact)
-    console.log(" ****************1*****************");
-    if (!checkValidValue()) return
-    let response = await fetch("http://localhost:3000/api/user", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email, password, city, address, contact })
-    })
-    console.log(" ****************2*****************");
-    response = await response.json()
-    console.log('response :---->', response)
-    if (response.success) {
-      const { result } = response;
-      delete result.password
-      localStorage.setItem('user', JSON.stringify(result))
-      if (props?.redirect?.order) {
-        router.push("/order")
+    if (!checkValidValue()) return null;
+    try {
+      let res = await fetch("http://localhost:3000/api/restaurant", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, city, address, contact, name })
+      })
+      let response = await res.json()
+      console.info("API response :", response);
+      if (response.success) {
+        console.log("Response success is true. Checking result...");
+        let { result } = response
+        delete result.password
+        localStorage.setItem("RestaurantUser", JSON.stringify(result))
+        router.push("/restaurant/dashboard")
+        console.log("result : -", result);
+
       } else {
-        router.push("/")
+        console.log("Sign up failed:", response.message || "Unknown error");
       }
-      // alert("User Sign Up successfully ")
-    } else {
-      alert("User Sign Up Unsuccessfully ")
+    } catch (error) {
+      console.error("Error during sign up:", error);
     }
-    setEmail("")
-    setPassword("")
-    setCPassword("")
-    setName("")
-    setCity("")
-    setAddress("")
-    setContact("")
-    setError({})
-
   }
-
   return (
-    <div className="flex bg-slate-200 flex-col h-[calc(100vh-5rem)]  w-full  items-center p-5 gap-5 ">
-      <h2 className="text-2xl font-bold " > User Sign Up </h2>
-      <form onSubmit={handleSubmit} className="flex w-[50vw] bg-cyan-600   rounded-lg shadow-lg overflow-y-auto shadow-black no-scrollbar py-5 h-[70vh]  items-center  gap-5 flex-col">
+    <div className="flex flex-col  items-center gap-5 h-full w-full  ">
+      <form onSubmit={handleSubmit} className="flex py-5 items-center h-full w-full gap-5 flex-col">
         <div className="relative w-[50%]">
-          <InputText value={name} onChange={(e) => { setError(prev => ({ ...prev, name: "" })); setName(e.target.value) }} Name="Name" />
+          <InputText value={name} onChange={(e) => { setError(prev => ({ ...prev, name: "" })); setName(e.target.value) }} Type="text" Name="Enter Restaurant Name " />
           {error?.name && <span className="text-xs text-red-500 font-light absolute">  {error.name || ""} </span>}
         </div>
-        <div className="relative w-[50%]" >
+        <div className="relative w-[50%]">
           <InputText value={email} onChange={(e) => {
             setEmail(e.target.value);
             setError(prev => ({ ...prev, email: "" }));
-          }} Type="text" Name="Email" Placeholder="example@gmail.com" />
-          {error?.email && <span className="text-xs  text-red-500 font-light absolute">{error.email || ""}</span>}
+          }} Type="email" Name="Email" Placeholder="example@gmail.com" />
+          {error?.email && <span className="text-xs text-red-500 font-light absolute">{error.email || ""}</span>}
         </div>
         <div className="relative w-[50%]">
           <InputText value={password} onChange={(e) => { setError(prev => ({ ...prev, password: "" })); setPassword(e.target.value) }} Type="password" Name="Password" />
@@ -141,12 +128,10 @@ const UserSignUp = ({ login, setLogin }, props) => {
           <InputText value={contact} onChange={(e) => { setError(prev => ({ ...prev, contact: "" })); setContact(e.target.value) }} Name="Enter Contact Number " Type="number" />
           <span className="text-xs text-red-500 font-light absolute">{error.contact || ""}</span>
         </div>
-        <Button Name="Sign Up" Type="submit" ClassName="mt-5" />
-        {/* <button type="submit" className="bg-blue-500 px-2 py-1 ">Submit </button> */}
+        <Button Name="Sign Up" ClassName="mt-5" />
       </form>
-      <h1 className="cursor-pointer hover:text-blue-500 " onClick={() => setLogin(!login)}>Already have a account ? login</h1>
     </div>
   )
 }
 
-export default UserSignUp
+export default Signup
